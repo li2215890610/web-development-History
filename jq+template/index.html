@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title> jq+template </title>
+
+  <link rel="stylesheet" href="../public.css">
+
+  <script src="jquery.min.js"></script>
+
+  <script src="template.js"></script>
+
+</head>
+
+<body>
+
+  <div class="input__box">
+    <input type="text" placeholder="请输入" id="input">
+    <button id="query">添加</button>
+  </div>
+
+  <div class="id__w">
+    <div>昵称</div>
+    <div>索引值</div>
+  </div>
+
+  <div id="renderHtml"></div>
+
+  <script id="renderTemplate" type="text/html">
+      <%for(var i in list){%>   
+          <div class='id__w'>
+            <div>
+                <%=list[i].name%>   
+            </div>
+
+            <div>
+                <%=[i]%>
+            </div>
+          </div>
+      <%}%>
+  </script>
+
+  <script>
+
+    var list = [{
+      name: "小张",
+    },
+    {
+      name: "小刘",
+    },
+    ]
+
+
+    $(document).ready(function () {
+
+      $("#query").click(function () {
+
+        if (list.length === 5) {
+          alert("最多5个")
+          return false
+        }
+
+        if (!$("#input").val()) {
+          alert("不能为空")
+          return false
+        }
+
+
+        list.push({
+          name: $("#input").val()
+        })
+        renderList()
+        $("#input").val("")
+      })
+    });
+
+
+
+    function renderList(params) {
+      var html = template(document.getElementById('renderTemplate').innerHTML, {
+        list
+      });
+
+      document.getElementById('renderHtml').innerHTML = html;
+    }
+
+    renderList()
+
+  </script>
+</body>
+
+</html>

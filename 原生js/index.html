@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <title>原生js</title>
+
+  <link rel="stylesheet" href="../public.css">
+
+</head>
+
+<body>
+  <div>
+    <div class="input__box">
+      <input type="text" placeholder="请输入" id="input">
+      <button onclick="onAddList()">添加</button>
+    </div>
+
+    <div class="id__w">
+      <div>昵称</div>
+      <div>索引值</div>
+    </div>
+
+    <div id="main">
+
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var list = [{
+      name: "小张",
+    },
+    {
+      name: "小刘",
+    },
+    ]
+
+    function onAddList() {
+      if (list.length === 5) {
+        alert("最多5个")
+        return
+      }
+
+      if (!document.getElementById("input").value) {
+        alert("不能为空")
+        return false
+      }
+
+      list.push({
+        name: document.getElementById("input").value,
+      })
+
+      document.getElementById("input").value = ""
+
+      renderList()
+    }
+
+    function renderList() {
+      var cent = document.getElementById("main");
+      cent.innerHTML = ""
+      for (var i = 0; i < list.length; i++) {
+        cent.innerHTML += "<div class='id__w'>" +
+          "<div> " + list[i].name + "</div>" +
+          "<div>" + i + "</div></div>";
+      }
+    }
+
+    renderList()
+  </script>
+</body>
+
+</html>

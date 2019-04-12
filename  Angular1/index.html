@@ -1,0 +1,71 @@
+<html>
+
+<head>
+  <title>AngularJS.1x</title>
+  <meta charset="utf-8">
+  <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+
+  <link rel="stylesheet" href="../public.css">
+
+</head>
+
+<body ng-app="myapp" ng-controller="myController">
+  <div>
+    <div class="input__box">
+      <input type="text" placeholder="请输入" id="input" ng-model="initData.inputValue">
+      <button ng-click="onAddList()">添加</button>
+    </div>
+
+    <div class="id__w">
+      <div>昵称</div>
+      <div>索引值</div>
+    </div>
+
+    <div id="main">
+
+      <div class="id__w" ng-repeat="item in initData.list">
+        <div>{{item.name}}</div>
+        <div>{{$index}}</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var app = angular.module('myapp', []);
+
+    app.controller('myController', function ($scope, $http) {
+
+      $scope.initData = {
+        list: [{
+          name: "小张",
+        },
+        {
+          name: "小刘",
+        },
+        ],
+        inputValue: ""
+      };
+
+      $scope.onAddList = function () {
+
+        if ($scope.initData.list.length === 5) {
+          alert("最多5个")
+          return false
+        }
+        if (!$scope.initData.inputValue) {
+          alert("不能为空")
+          return false
+        }
+
+        $scope.initData.list.push({
+          name: $scope.initData.inputValue
+        })
+
+        $scope.initData.inputValue = ""
+      }
+    })
+
+  </script>
+</body>
+
+</html>

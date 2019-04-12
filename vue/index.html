@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue</title>
+  <link rel="stylesheet" href="../public.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+  <div id="app">
+
+    <div class="input__box">
+      <input type="text" placeholder="请输入" id="input" v-model="inputValue">
+      <button id="query" @click="onAddList()">添加</button>
+    </div>
+
+    <div class="id__w">
+      <div>昵称</div>
+      <div>索引值</div>
+    </div>
+
+    <div class='id__w' v-for="(item, index) in list">
+      <div>
+        {{item.name}}
+      </div>
+      <div>
+        {{index}}
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+
+  var app = new Vue({
+    el: '#app',
+    data: {
+      list: [{
+        name: "小张",
+      },
+      {
+        name: "小刘",
+      },
+      ],
+      inputValue: ""
+    },
+    methods: {
+      onAddList: function () {
+
+        if (this.list.length === 5) {
+          alert("最多5个")
+          return false
+        }
+
+        if (!this.inputValue) {
+          alert("不能为空")
+          return false
+        }
+
+
+        this.list.push({
+          name: this.inputValue
+        })
+
+        this.inputValue = ""
+      }
+    }
+  })
+</script>
+
+</html>

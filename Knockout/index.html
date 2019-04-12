@@ -1,0 +1,33 @@
+<!DOCTYPE HTML
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>knockout demo</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="knockout-3.1.0.js"></script>
+</head>
+
+<body>
+	<div class="diy-slct-sum" id="DiySum">
+		<div class="dss-warn">注意：设置只保存在您的电脑，清空浏览器缓存或更换电脑会显示默认值。</div>
+		<div class="dss-content clear">
+			<ul data-bind="foreach:list">
+				<li>
+					<i data-bind="click:$root.remove">移除</i>
+					<i data-bind="click:$root.add,visible:show">增加一项</i>
+					<input type="text" data-bind="value:val" />
+				</li>
+			</ul>
+		</div>
+		<div class="dss-tip" data-bind="text:tip"></div>
+		<div class="dss-btn">
+			<a href="javascript:;" data-bind="click:changeStatus,attr:{'class':statusColor},text:statusTxt"></a>
+			<a href="javascript:;" class="btn btn-mini" data-bind="click:save">保存金额</a>
+			<a href="javascript:;" class="btn btn-mini" data-bind="click:close">返回</a>
+		</div>
+	</div>
+	<script src="demo.js"></script>
+</body>
+</htm>
