@@ -3,10 +3,16 @@
 
 <head>
   <title>Backbone</title>
+  <link rel="stylesheet" href="../public.css">
+
 </head>
 
 <body>
-  <button id="check">新手报到</button>
+  <div class="input__box">
+    <input type="text" placeholder="请输入" id="input">
+    <button id="query">添加</button>
+  </div>
+
   <ul id="world-list">
   </ul>
   <script src="http://the5fireblog.b0.upaiyun.com/staticfile/jquery-1.10.2.js"></script>
@@ -31,16 +37,25 @@
           this.worlds = new Worlds(null, { view: this })
         },
         events: {                //事件绑定，绑定Dom中id为check的元素
-          "click #check": "checkIn",
+          "click #query": "checkIn",
         },
         checkIn: function () {
-          var world_name = prompt("请问，您是哪星人?"); if (world_name == "") world_name = '未知'; var world = new World({ name: world_name }); this.worlds.add(world);
+
+          if (!$("#input").val()) {
+            alert("不能为空")
+            return false
+          }
+
+          var world = new World({ name: $("#input").val() }); 
+          
+          this.worlds.add(world);
+          
         },
         addOneWorld: function (model) {
-          $("#world-list").append("<li>这里是来自 <b>" + model.get('name') + "</b> 星球的问候：hello world！</li>");
+          $("#world-list").append("<li>" + model.get('name') + "</li>");
         }
-      });    
-    
+      });
+
       //实例化AppView
       var appview = new AppView;
 
