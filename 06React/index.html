@@ -73,6 +73,16 @@
 
           inputChangeText = (value)=>{
             let { list } = this.state;
+
+            if (list.length === 5) {
+              alert("最多5个")
+              return false
+            }
+            if (!value.name) {
+              alert("不能为空")
+              return false
+            }
+
             this.setState({list: [...list,{...value}]})
           }
 
