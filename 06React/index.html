@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>React</title>
+  <link rel="stylesheet" href="../public.css">
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root">
+
+
+  </div>
+
+  <script type="text/babel">
+      
+        class TemperatureChange extends React.Component{
+            constructor(props){
+                super(props)  
+                this.state = {
+                  value:""
+                }              
+            }
+
+            onAddList = ()=>{
+              
+              let { value } = this.state;
+              
+              this.props.onSaveItem({
+                name: value
+              })
+
+              this.setState({
+                value:""
+              })
+            }
+
+            onChange = (e)=>{
+              this.setState({
+                value: e.target.value
+              })
+            }
+
+            render(){
+                return(
+                  <div className='input__box'>
+                    <input type="text" id="input" placeholder="请输入"  onChange={(e) => {this.onChange(e)}} />
+                    <button onClick={this.onAddList}>添加</button>
+                  </div>
+                )
+            }
+        }
+
+        class List extends React.Component {
+          constructor(props) {
+              super(props);
+              this.state = {
+                list:[{
+                    name: "小张",
+                  },
+                  {
+                    name: "小刘",
+                  },
+                ] 
+              };
+          }
+
+          inputChangeText = (value)=>{
+            let { list } = this.state;
+            this.setState({list: [...list,{...value}]})
+          }
+
+          render() {
+            let { list } = this.state;
+
+              return (
+                <div>
+
+                  <TemperatureChange onSaveItem={this.inputChangeText}/>
+
+                  <div className="id__w">
+                    <div>昵称</div>
+                    <div>索引值</div>
+                  </div>
+
+                  <div id="main">
+                    {
+                      list && list.map((item, $index)=>{
+                        return <div className="id__w" key={$index}>
+                          <div>{item.name}</div>
+                          <div>{$index}</div>
+                        </div>
+                      })
+                    }
+                  </div>
+
+                </div>
+              );
+          }
+        }
+
+        ReactDOM.render(
+          <List />,
+          document.getElementById('root')
+        );
+    </script>
+</body>
+
+</html>
