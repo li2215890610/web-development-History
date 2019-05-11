@@ -19,7 +19,7 @@
       <button onclick="onAddList()">添加</button>
     </div>
 
-    <div class="id__w">
+    <div class="list_title">
       <div>昵称</div>
       <div>索引值</div>
     </div>
@@ -62,7 +62,7 @@
       var cent = document.getElementById("main");
       cent.innerHTML = ""
       for (var i = 0; i < list.length; i++) {
-        cent.innerHTML += "<div class='id__w'>" +
+        cent.innerHTML += "<div class='list_title'>" +
           "<div> " + list[i].name + "</div>" +
           "<div>" + i + "</div></div>";
       }

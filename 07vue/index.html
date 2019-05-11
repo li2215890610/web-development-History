@@ -18,12 +18,12 @@
       <button id="query" @click="onAddList()">添加</button>
     </div>
 
-    <div class="id__w">
+    <div class="list_title">
       <div>昵称</div>
       <div>索引值</div>
     </div>
 
-    <div class='id__w' v-for="(item, index) in list">
+    <div class='list_title' v-for="(item, index) in list">
       <div>
         {{item.name}}
       </div>
