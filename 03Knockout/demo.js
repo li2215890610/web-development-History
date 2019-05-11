@@ -61,6 +61,7 @@ var viewModel = {
             return false;
         }
         viewModel.list.remove(data);
+        debugger
         viewModel.list.push({
             val: viewModel.list.pop().val,
             show: ko.observable(true)
