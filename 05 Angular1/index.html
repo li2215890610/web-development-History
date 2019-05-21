@@ -14,18 +14,19 @@
       <button ng-click="onAddList()">添加</button>
     </div>
 
-    <div class="id__w">
+    <div class="list_title">
       <div>昵称</div>
       <div>索引值</div>
     </div>
 
     <div id="main">
 
-      <div class="id__w" ng-repeat="item in initData.list">
+      <div class="list_title" ng-repeat="item in initData.list">
         <div>{{item.name}}</div>
         <div>{{$index}}</div>
       </div>
     </div>
+    {{ initData.inputValue * 10}}
   </div>
 
   <script>
